@@ -1,23 +1,9 @@
 <html>
 <head> <script>
   // var spam = window.open("http://cjnassour.github.io/page1.html"); 
-var j$ = jQuery.noConflict();
-var tempDisableBeforeUnload = false;
-
-j$(window).on('beforeunload', function()
-{
-   if (!tempDisableBeforeUnload)
-   {
-      return 'Leaving this page will lose your changes. Are you sure?';
-   }
-   else
-   {
-      //reset
-      tempDisableBeforeUnload = false;
-      return;
-   }
-});
-
+window.onbeforeunload = function(e) {
+    return 'You have unsaved changes. If you leave the page these changes will be lost.';
+};
    
    
    
