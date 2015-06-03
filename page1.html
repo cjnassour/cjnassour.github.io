@@ -1,22 +1,29 @@
 <html>
 <head> <script>
   // var spam = window.open("http://cjnassour.github.io/page1.html"); 
-   var confirmOnPageExit = function (e) 
-{
-    // If we haven't been passed the event get the window.event
-    e = e || window.event;
+var j$ = jQuery.noConflict();
+var tempDisableBeforeUnload = false;
 
-    var message = 'Are you sure you want to do that?';
-    // For Chrome, Safari, IE8+ and Opera 12+
-    return message;
-};
+j$(window).on('beforeunload', function()
+{
+   if (!tempDisableBeforeUnload)
+   {
+      return 'Leaving this page will lose your changes. Are you sure?';
+   }
+   else
+   {
+      //reset
+      tempDisableBeforeUnload = false;
+      return;
+   }
+});
 
    
    
    
    
    </script>
-<title>Welcome to the Panda Page!</title>
+<title>The Panda Page!</title>
 </head>
 <body>
 <pre>
