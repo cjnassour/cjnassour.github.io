@@ -32,7 +32,7 @@
         var myWall;
 
         function startGame() {
-            myGamePiece = new component(15, 15, "https://cloud.githubusercontent.com/assets/12548402/12923831/1439dd44-cf0c-11e5-86c2-ca003f1f504f.gif", 10, 120, "image");
+            myGamePiece = new component(15, 15, "blue", 10, 120);
             myGamePiece2 = new component(15, 15, "red", 10, 180);
             myWall = new component(10, 200, "grey", 300, 120);
             myGameArea.start();
@@ -58,12 +58,7 @@
             }
         }
 
-        function component(width, height, color, x, y, type) {
-            this.type = type;
-            if (type == "image") {
-                this.image = new Image();
-                this.image.src = color;
-            }
+        function component(width, height, color, x, y) {
             this.width = width;
             this.height = height;
             this.speedX = 0;
@@ -72,13 +67,6 @@
             this.y = y;
             this.update = function () {
                 ctx = myGameArea.context;
-                if (type == "image") {
-                    ctx.drawImage(this.image,
-                        this.x,
-                        this.y,
-                        this.width, this.height);
-                }
-                else {
                 ctx.fillStyle = color;
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
