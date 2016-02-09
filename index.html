@@ -1,69 +1,142 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
+<head>
+    <h1 > King's Piece</h1>
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <p><b>Arrow keys to move. Z to attack, X for turbo.</b></p>
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Chris Nassour by cjnassour</title>
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <div class="shell">
+    <style>
+        p {
+            font-family: "Lucida Sans Unicode";
+        }
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Chris Nassour</h1>
-            <h2>Welcome!</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+        h1 {
+            color: blue;
+            font-family: "Lucida Sans Unicode";
+        }
 
-      <div id="no-downloads">
-        <span class="inner">
-        </span>
-      </div>
+        canvas {
+            border: 10px solid #62ddff;
+            background-color: #0094ff;
+        }
+    </style>
+
+</head>
+
+<body onload="startGame()">
+    <script>
+
+        var myGamePiece;
+        var myWall;
+        var myGround;
+
+        function startGame() {
+            myGamePiece = new component(100, 100, "bob.gif", 10, 190, "image");
+            myGamePiece2 = new component(15, 15, "red", 0, 180);
+            myWall = new component(10, 200, "grey", 300, 120);
+            myGround = new component(500, 30, "blue", 0, 250);
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas: document.createElement("canvas"),
+            start: function () {
+                this.canvas.width = 480;
+                this.canvas.height = 270;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.frameNo = 0;
+                this.interval = setInterval(updateGameArea, 1);
+                window.addEventListener('keydown', function (e) {
+                    myGameArea.key = e.keyCode;
+                })
+                window.addEventListener('keyup', function (e) {
+                    myGameArea.key = false;
+                    myGamePiece.image.src = "bob.gif"
+                    myGamePiece.speedX = 0;
+                })
+            },
+            clear: function () {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            },
+            stop: function () {
+                clearInterval(this.interval);
+            }
+        }
+
+        function component(width, height, color, x, y, type) {
+            this.type = type;
+            if (type == "image") {
+                this.image = new Image();
+                this.image.src = color;
+            }
+            this.width = width;
+            this.height = height;
+            this.speedX = 0;
+            this.speedY = 0;
+            this.x = x;
+            this.y = y;
+            this.update = function () {
+                ctx = myGameArea.context;
+                if (type == "image") {
+                    ctx.drawImage(this.image,
+                        this.x,
+                        this.y,
+                        this.width, this.height);
+                } else {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+            }
+            this.newPos = function () {
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+        }
+
+        //FUNCTIONS
+        var check = 0;
+        function updateGameArea() {
+            check++;
+
+            myGameArea.clear();
+            if (myGameArea.key && myGameArea.key == 37) { /*myGamePiece.image.src = "bob_move.gif";*/ myGamePiece.speedX = -0.5; }
+            if (myGameArea.key && myGameArea.key == 39) { /*myGamePiece.image.src = "bob_move.gif";*/ myGamePiece.speedX = 0.5; }
+            //if (myGameArea.key && myGameArea.key == 38) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = -1; }
+            //if (myGameArea.key && myGameArea.key == 40) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = 1; }
+            if (myGameArea.key && myGameArea.key == 88) { myGamePiece.image.src = "bob_move.gif"; turbo(); }
+            if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "bob_attack.gif";}
+            myGamePiece.newPos();
+
+            myGamePiece2.x += 1;
+            myGround.update();
+            myGamePiece.update();
+            myGamePiece2.update();
+            myWall.update();
+            
+            //moving red block
+            if (check % 800 == 0) {
+                myGamePiece2.x -= 800;
+            }
+        }
+
+        function turbo() {
+            myGamePiece.speedX +=50;
+        }
+
+        function reset() {
+            myGamePiece.x = 10;
+            myGamePiece.y = 120;
+            myGamePiece.speedX = 0;
+            myGamePiece.speedY = 0;
+        }
 
 
-      <span class="banner-fix"></span>
 
+        </script>
 
-      <section id="main_content">
-        <h3>
-<a id="chris-nassours-home-page" class="anchor" href="#chris-nassours-home-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>My Projects</h3>
-
-<p><a href="http://cjnassour.github.io/KingsGame.html">King's Game</a></p>
-<p><a href="https://github.com/cjnassour/Postfix-Project/blob/master/PostfixProject/main.cpp">C++ Postfix Project</a></p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>Projects by <a href="https://github.com/cjnassour">cjnassour</a> can be found on <a href="https://github.com/cjnassour">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
-    
-  </body>
+        <button onclick="reset()">RESET</button>
+</body>
 </html>
