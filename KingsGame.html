@@ -33,7 +33,7 @@
         var myGround;
 
         function startGame() {
-            myGamePiece = new component(100, 100, "https://cloud.githubusercontent.com/assets/12548402/12923831/1439dd44-cf0c-11e5-86c2-ca003f1f504f.gif", 10, 190, "image");
+            myGamePiece = new component(100, 100, "http://i.imgur.com/rugN45s.gif", 10, 190, "image");
             myGamePiece2 = new component(15, 15, "red", 0, 180);
             myWall = new component(10, 200, "grey", 300, 120);
             myGround = new component(500, 30, "blue", 0, 250);
@@ -106,8 +106,8 @@
             if (myGameArea.key && myGameArea.key == 39) { /*myGamePiece.image.src = "bob_move.gif";*/ myGamePiece.speedX = 0.5; }
             //if (myGameArea.key && myGameArea.key == 38) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = -1; }
             //if (myGameArea.key && myGameArea.key == 40) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = 1; }
-            if (myGameArea.key && myGameArea.key == 88) { myGamePiece.image.src = "bob_move.gif"; turbo(); }
-            if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "https://cloud.githubusercontent.com/assets/12548402/12933882/76cdc4d8-cf3f-11e5-8fdf-f5ad5e357cba.gif";}
+            if (myGameArea.key && myGameArea.key == 88) {turbo();}
+            if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif";}
             myGamePiece.newPos();
 
             myGamePiece2.x += 1;
