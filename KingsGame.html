@@ -109,7 +109,7 @@
             if (myGameArea.key && myGameArea.key == 88) { bolt(); }                  //bolt
             if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif"; }    //dagger
             myGamePiece.newPos();
-
+            myGamePiece2.x += 1;
             myGround.update();
             myGamePiece.update();
             myGamePiece2.update();
@@ -124,7 +124,7 @@
         function bolt() {
             myGamePiece2.x = myGamePiece.x;
             myGamePiece2.y = myGamePiece.y;
-            myGamePiece2.speedX = 1;
+            
         }
 
 
