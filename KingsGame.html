@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <h1 > King's Piece</h1>
-
+    <h1> King's Piece</h1>
     <p><b>Arrow keys to move. Z to stab, X for bolt.</b></p>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <style>
         p {
             font-family: "Lucida Sans Unicode";
@@ -22,9 +19,7 @@
             background-color: #0094ff;
         }
     </style>
-
 </head>
-
 <body onload="startGame()">
     <script>
 
@@ -34,7 +29,7 @@
 
         function startGame() {
             myGamePiece = new component(100, 100, "http://i.imgur.com/rugN45s.gif", 10, 190, "image");
-            myGamePiece2 = new component(15, 15, "#00ff99", 200, 1000);
+            myGamePiece2 = new component(8, 8, "#00ff99", 200, 1000);
             myWall = new component(10, 200, "grey", 300, 120);
             myGround = new component(500, 30, "blue", 0, 250);
             myGameArea.start();
@@ -106,7 +101,7 @@
             if (myGameArea.key && myGameArea.key == 39) { /*myGamePiece.image.src = "bob_move.gif";*/ myGamePiece.speedX = 0.5; }
             //if (myGameArea.key && myGameArea.key == 38) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = -1; }
             //if (myGameArea.key && myGameArea.key == 40) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = 1; }
-            if (myGameArea.key && myGameArea.key == 88) { bolt(); }                  //bolt
+            if (myGameArea.key && myGameArea.key == 88) { myGamePiece.image.src = "http://i.imgur.com/EGshKkK.gif"; bolt(); }                  //bolt
             if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif"; }    //dagger
             myGamePiece.newPos();
             myGamePiece2.x += 10;
@@ -116,21 +111,21 @@
             myWall.update();
         }
 
+        /* //legacy feature
         function turbo() {
-            myGamePiece.speedX +=50;
+            myGamePiece.speedX += 50;
         }
+        */
 
-        
         function bolt() {
-            myGamePiece2.x = myGamePiece.x;
-            myGamePiece2.y = myGamePiece.y;
-            
+            myGamePiece2.x = myGamePiece.x + 51;
+            myGamePiece2.y = myGamePiece.y + 48;
+
         }
 
 
 
-        </script>
-
-        <button onclick="reset()">RESET</button>
+    </script>
+    <button onclick="reset()">RESET</button>
 </body>
 </html>
