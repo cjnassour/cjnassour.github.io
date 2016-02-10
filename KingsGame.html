@@ -34,7 +34,7 @@
 
         function startGame() {
             myGamePiece = new component(100, 100, "http://i.imgur.com/rugN45s.gif", 10, 190, "image");
-            myGamePiece2 = new component(15, 15, "red", 0, 180);
+            myGamePiece2 = new component(15, 15, "#00ff99", 0, 180);
             myWall = new component(10, 200, "grey", 300, 120);
             myGround = new component(500, 30, "blue", 0, 250);
             myGameArea.start();
@@ -109,7 +109,7 @@
             if (myGameArea.key && myGameArea.key == 88) { bolt(); }                  //bolt
             if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif"; }    //dagger
             myGamePiece.newPos();
-            myGamePiece2.x += 1;
+            myGamePiece2.x += 10;
             myGround.update();
             myGamePiece.update();
             myGamePiece2.update();
