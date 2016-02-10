@@ -3,7 +3,7 @@
 <head>
     <h1 > King's Piece</h1>
 
-    <p><b>Arrow keys to move. Z to attack, X for turbo.</b></p>
+    <p><b>Arrow keys to move. Z to stab, X for bolt.</b></p>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -125,12 +125,6 @@
             myGamePiece.speedX +=50;
         }
 
-        function reset() {
-            myGamePiece.x = 10;
-            myGamePiece.y = 190;
-            myGamePiece.speedX = 0;
-            myGamePiece.speedY = 0;
-        }
         
         function bolt() {
             myGamePiece2.x = myGamePiece.x;
