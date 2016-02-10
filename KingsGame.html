@@ -48,7 +48,7 @@
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.frameNo = 0;
-                this.interval = setInterval(updateGameArea, 1);
+                this.interval = setInterval(updateGameArea, 1);     //Game loop: every 1 milisecond update game area
                 window.addEventListener('keydown', function (e) {
                     myGameArea.key = e.keyCode;
                 })
@@ -106,8 +106,8 @@
             if (myGameArea.key && myGameArea.key == 39) { /*myGamePiece.image.src = "bob_move.gif";*/ myGamePiece.speedX = 0.5; }
             //if (myGameArea.key && myGameArea.key == 38) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = -1; }
             //if (myGameArea.key && myGameArea.key == 40) { myGamePiece.image.src = "bob_move.gif"; myGamePiece.speedY = 1; }
-            if (myGameArea.key && myGameArea.key == 88) {turbo();}
-            if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif";}
+            if (myGameArea.key && myGameArea.key == 88) { bolt(); }                  //bolt
+            if (myGameArea.key && myGameArea.key == 90) { myGamePiece.image.src = "http://i.imgur.com/lCyO1hf.gif"; }    //dagger
             myGamePiece.newPos();
 
             myGamePiece2.x += 1;
@@ -131,6 +131,12 @@
             myGamePiece.y = 190;
             myGamePiece.speedX = 0;
             myGamePiece.speedY = 0;
+        }
+        
+        function bolt() {
+            myGamePiece2.x = myGamePiece.x;
+            myGamePiece2.y = myGamePiece.y;
+            myGamePiece2.speedX = 50;
         }
 
 
